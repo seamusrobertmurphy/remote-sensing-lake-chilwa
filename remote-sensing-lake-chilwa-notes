@@ -1,0 +1,27 @@
+
+install_packages("terra")
+install_packages("sf")
+
+
+
+install_packages("geos")
+
+install_packages("gdalutilities")
+install_packages("gdalraster")
+install_packages("gdalcubes")
+install_packages("proj4")
+install_packages("devtools")
+#developer version
+devtools::install_github("e-sensing/sits@dev", dependencies = TRUE)
+install.packages("torch")
+
+
+#stable version
+#devtools::install_github("e-sensing/sits", dependencies = TRUE)
+
+
+install_packages("gdalutils")
+install_packages("gdalutils")
+install_packages("gdalutils")
+
+

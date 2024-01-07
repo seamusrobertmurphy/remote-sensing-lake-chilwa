@@ -1,0 +1,71 @@
+---
+title: "task1-raster-stacks"
+format: html
+editor: visual
+---
+
+```{r}
+#| label: load-packages
+#| include: false
+#| eval: false
+ 
+install_packages("gdalutilities")
+install_packages("gdalraster")
+install_packages("gdalcubes")
+install_packages("proj4")
+install_packages("devtools")
+#developer version
+devtools::install_github("e-sensing/sits@dev", dependencies = TRUE)
+install.packages("torch")
+```
+
+```{r}
+#| label: test tools
+#| include: false
+#| eval: true
+library(sits)
+sits_list_collections()
+```
+
+```{r}
+#| label: test tools
+#| include: false
+#| eval: true
+
+#AWS data
+# Create a data cube covering an area in Brazil
+s2_23MMU_cube <- sits_cube(
+  source = "AWS",
+  collection = "SENTINEL-2-L2A",
+  tiles = "23MMU",
+  bands = c("B02", "B8A", "B11", "CLOUD"),
+  start_date = "2018-07-12",
+  end_date = "2019-07-28"
+)
+plot(s2_23MMU_cube,
+  red = "B11",
+  blue = "B02",
+  green = "B8A",
+  date = "2018-10-05"
+)
+
+
+
+dea_s2_cube <- sits_cube(
+  source = "DEAFRICA",
+  collection = "S2_L2A",
+  roi = c(
+    lon_min = 46.1, lat_min = -15.6,
+    lon_max = 46.6, lat_max = -16.1
+  ),
+  bands = c(
+    "B02", "B03", "B04",
+    "B05", "B06", "B07",
+    "B08", "B8A", "B11",
+    "B12", "CLOUD"
+  ),
+  start_date = "2019-04-01",
+  end_date = "2019-11-30"
+)
+plot(dea_s2_cube, red = "B04", blue = "B02", green = "B08")
+```
